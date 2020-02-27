@@ -2,7 +2,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:lock/Door.dart';
+import 'package:lock/AdminDoor.dart';
 import 'package:lock/Email/Admin.dart';
 import 'package:lock/Email/Services.dart';
 
@@ -15,13 +15,11 @@ class CreateAdmin extends StatefulWidget {
 
 class _CreateAdminPageState extends State<CreateAdmin> {
 
-    int buttonCount = 0;
-    String userId = "";
-   String _email = "";
-   String _pword = "";
-   final emailController = TextEditingController();
-   final passwordController = TextEditingController();
-   final adminController = TextEditingController();
+      int buttonCount = 0;
+      String userId = "";
+      final emailController = TextEditingController();
+      final passwordController = TextEditingController();
+      final adminController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +29,16 @@ class _CreateAdminPageState extends State<CreateAdmin> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Password",
       ),
-        controller: passwordController,
-        onSaved: (value) => _pword = value,
+      controller: passwordController,
       validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
     );
+
     final emailField = TextFormField(
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
       ),
       controller: emailController,
-      onSaved: (value) => _email = value.trim(),
       validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null
     );
 
@@ -55,8 +52,7 @@ class _CreateAdminPageState extends State<CreateAdmin> {
     );
 
 
-    final loginButon = Material(
-
+    final loginButton = Material(
         elevation: 5.0,
         color: Color(0xff01A0C7),
         child: MaterialButton(
@@ -80,7 +76,6 @@ class _CreateAdminPageState extends State<CreateAdmin> {
               }
             });
           },
-
         ));
 
 
@@ -105,7 +100,7 @@ class _CreateAdminPageState extends State<CreateAdmin> {
                 SizedBox(height: 25.0),
                 adminKeyField,
                 SizedBox(height: 35.0,),
-                loginButon,
+                loginButton,
               ],
             ),
           ),

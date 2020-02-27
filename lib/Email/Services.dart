@@ -42,12 +42,20 @@ class Services{
   }
 
   Future<DocumentSnapshot> login(String email, String password)  async{
-    AuthResult result = await _fBAuth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
-    adminUser = result.user;
-    var snapShot = await Firestore.instance.collection('AdminList').document(adminUser.uid).get();
-    if (snapShot.exists){
-      return snapShot;
+    AuthResult result;
+    try{
+      result = await _fBAuth.signInWithEmailAndPassword(email: email.trim(), password: password.trim());
+      adminUser = result.user;
+      var snapShot = await Firestore.instance.collection('AdminList').document(adminUser.uid).get();
+      if (snapShot.exists){
+        return snapShot;
+      }
+    }catch(e){
+      if(e is PlatformException){
+        print(e.details);
+      }
     }
+    
     return null;
   }
   
