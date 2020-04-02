@@ -1,10 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:lock/CreateAdmin.dart';
-import 'package:lock/Email/Services.dart';
-import 'package:lock/Login.dart';
 
-import 'package:lock/main.dart';
+import 'package:lock/Email/Services.dart';
+
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -152,14 +150,14 @@ class Door extends StatelessWidget {
                               ),
                              ),
                             SizedBox(height: 20),
-                            for(var d in guestList) FlatButton(
-                              color: Color.fromRGBO(120, 220, 10, 50),
-                              child: Text(d.data["email"]),
-                              onPressed: (){
-                                  Services().deleteGuest(d.data["email"]);
-                                  Navigator.pop(context);
-                              },
-                            )
+//                            for(var d in guestList) FlatButton(
+//                              color: Color.fromRGBO(120, 220, 10, 50),
+//                              child: Text(d.data["email"]),
+//                              onPressed: (){
+//                                  Services().deleteGuest(d.data["email"]);
+//                                  Navigator.pop(context);
+//                              },
+//                            )
                           ],
                         )
                     ),

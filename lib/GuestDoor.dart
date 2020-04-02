@@ -1,10 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:lock/CreateAdmin.dart';
-import 'package:lock/Email/Services.dart';
-import 'package:lock/Login.dart';
 
-import 'package:lock/main.dart';
+import 'package:lock/Email/BluetoothConnection.dart';
+import 'package:lock/Email/Services.dart';
+
 
 
 class GuestDoor extends StatelessWidget {
@@ -37,6 +36,7 @@ class GuestDoor extends StatelessWidget {
               .width,
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           onPressed: () {
+            BluetoothConnection().getConnection();
           },
           child: Text("Unlock",
             textAlign: TextAlign.center,

@@ -1,5 +1,4 @@
 
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:lock/Login.dart';
@@ -40,7 +39,7 @@ class Select extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) => Login()),
             );
-            },
+          },
           child: Text("Login",
             textAlign: TextAlign.center,
           ),
@@ -70,17 +69,15 @@ class Select extends StatelessWidget {
       ),
       body: Center(
         child : Column(
-          children: <Widget>[
-            SizedBox(height: 405.0),
-            loginButon,
-            SizedBox(height: 25.0),
-            adminButton
-          ]
+            children: <Widget>[
+              SizedBox(height: 405.0),
+              loginButon,
+              SizedBox(height: 25.0),
+              adminButton
+            ]
 
         ),
       ),
     );
   }
 }
-
-
