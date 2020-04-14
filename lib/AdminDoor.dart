@@ -1,15 +1,11 @@
 
 import 'package:flutter/material.dart';
-
-import 'package:lock/Email/Services.dart';
-
+import 'package:lock/Email/AccountServices.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
 
 class Door extends StatelessWidget {
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +25,7 @@ class Door extends StatelessWidget {
       //onSaved: (value) => _pword = value,
       validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
     );
+
     final emailField = TextFormField(
         decoration: InputDecoration(
           border: OutlineInputBorder(
@@ -43,6 +40,7 @@ class Door extends StatelessWidget {
         //onSaved: (value) => _email = value.trim(),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null
     );
+
     final lockButton = SizedBox(
         width: MediaQuery.of(context).size.width/2.2,
         child: MaterialButton(
@@ -58,6 +56,7 @@ class Door extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ));
+
     final unlockButton= SizedBox(
         width: MediaQuery.of(context).size.width/2.2,
         child: MaterialButton(
@@ -72,7 +71,6 @@ class Door extends StatelessWidget {
           child: Text("Unlock",
             textAlign: TextAlign.center,
           ),
-
         ));
 
     final addGuest= SizedBox(
@@ -108,9 +106,7 @@ class Door extends StatelessWidget {
                     ],
                   )
                 ),
-
               );
-
             });
           },
           child: Text("Add Guest",
@@ -129,7 +125,6 @@ class Door extends StatelessWidget {
 //              .of(context)
 //              .size
 //              .width,
-
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           onPressed: ()async {
             var guestList = await Services().getGuestList();
@@ -157,15 +152,15 @@ class Door extends StatelessWidget {
 //                                  Services().deleteGuest(d.data["email"]);
 //                                  Navigator.pop(context);
 //                              },
-//                            )
+//                           )
                           ],
                         )
                     ),
                   );
-
                 });
           },
         ));
+
     final userButton = ButtonBar(
       alignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -181,6 +176,7 @@ class Door extends StatelessWidget {
           lockButton
       ],
     );
+
     return new Scaffold(
       appBar: new AppBar(
         title: Text("Welcome Door"),
@@ -208,7 +204,6 @@ class Door extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }

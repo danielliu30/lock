@@ -55,7 +55,6 @@ class Services{
         print(e.details);
       }
     }
-    
     return null;
   }
   
@@ -67,7 +66,6 @@ class Services{
   Future<void >signOut() async{
      var before = await _fBAuth.currentUser();
      await _fBAuth.signOut();
-
      var test = await _fBAuth.currentUser();
      var test1 = await _fBAuth.currentUser();
   }
