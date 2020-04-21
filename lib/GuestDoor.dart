@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:lock/Email/AccountServices.dart';
 
 
-
+//creates view for guest users after sign in
 class GuestDoor extends StatelessWidget {
 
   @override
@@ -43,7 +43,7 @@ class GuestDoor extends StatelessWidget {
 
         ));
 
-    final addGuest= SizedBox(
+    final callOwner= SizedBox(
         width: MediaQuery.of(context).size.width/2.2,
         child: MaterialButton(
           color: Color.fromRGBO(0, 191, 255, 50.0),
@@ -58,7 +58,7 @@ class GuestDoor extends StatelessWidget {
           ),
         ));
 
-    final removeGuest = SizedBox(
+    final requestCode = SizedBox(
         width: MediaQuery.of(context).size.width/2.2,
         child: MaterialButton(
           color: Color.fromRGBO(0, 191, 150, 50.0),
@@ -69,10 +69,9 @@ class GuestDoor extends StatelessWidget {
 //              .of(context)
 //              .size
 //              .width,
-
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           onPressed: ()async {
-            var guestList = await Services().getGuestList();
+            String code = await Services().getCode();
             showDialog(context: context,
                 builder: (context){
                   return Dialog(
@@ -92,7 +91,7 @@ class GuestDoor extends StatelessWidget {
                             SizedBox(height: 20),
                                 FlatButton(
                               color: Color.fromRGBO(120, 220, 10, 50),
-                              child: Text("7 6 5 1 2 3"),
+                              child: Text(code),
                               onPressed: (){
                                   Navigator.pop(context);
                               },
@@ -105,11 +104,12 @@ class GuestDoor extends StatelessWidget {
                 });
           },
         ));
+
     final userButton = ButtonBar(
       alignment: MainAxisAlignment.center,
       children: <Widget>[
-        addGuest,
-        removeGuest
+        callOwner,
+        requestCode
       ],
     );
 
@@ -120,6 +120,7 @@ class GuestDoor extends StatelessWidget {
         lockButton
       ],
     );
+    
     return new Scaffold(
       appBar: new AppBar(
         title: Text("Welcome Door"),
@@ -147,7 +148,6 @@ class GuestDoor extends StatelessWidget {
           ],
         ),
       ),
-
     );
   }
 }

@@ -6,6 +6,7 @@ import 'CreateAdmin.dart';
 
 void main() => runApp(new MyApp());
 
+//creates view for start up page
 class MyApp extends StatelessWidget {
 
   @override
@@ -20,11 +21,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Select extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-
     final loginButon = Material(
         elevation: 5.0,
         color: Color(0xff01A0C7),
@@ -75,7 +75,6 @@ class Select extends StatelessWidget {
               SizedBox(height: 25.0),
               adminButton
             ]
-
         ),
       ),
     );

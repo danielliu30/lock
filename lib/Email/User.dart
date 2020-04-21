@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 
-
+//object associated with guest accounts
 class User {
   String _email;
   String _uid;
@@ -14,6 +14,7 @@ class User {
     this._password = password;
   }
 
+  //reformats parameters to JSON
   Map<String, dynamic> toJson() =>
       {
         'email': _email,

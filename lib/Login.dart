@@ -7,6 +7,8 @@ import 'package:lock/Email/Admin.dart';
 import 'package:lock/Email/AccountServices.dart';
 import 'package:lock/GuestDoor.dart';
 
+
+//creates view for singing in admin or guest accounts
 class Login extends StatefulWidget {
 
   @override
@@ -18,8 +20,6 @@ class _LoginPageState extends State<Login> {
 
   int buttonCount = 0;
   String userId = "";
-  String _email = "";
-  String _pword = "";
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
@@ -32,7 +32,6 @@ class _LoginPageState extends State<Login> {
         hintText: "Password",
       ),
       controller: passwordController,
-      onSaved: (value) => _pword = value,
       validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null,
     );
     final emailField = TextFormField(
@@ -41,10 +40,8 @@ class _LoginPageState extends State<Login> {
           hintText: "Email",
         ),
         controller: emailController,
-        onSaved: (value) => _email = value.trim(),
         validator: (value) => value.isEmpty ? 'Email can\'t be empty' : null
     );
-
 
     final loginButon = Material(
         elevation: 5.0,
@@ -73,7 +70,6 @@ class _LoginPageState extends State<Login> {
               }
             });
           },
-
         ));
 
     return Scaffold(

@@ -6,6 +6,8 @@ import 'package:lock/AdminDoor.dart';
 import 'package:lock/Email/Admin.dart';
 import 'package:lock/Email/AccountServices.dart';
 
+
+//creates view for admin account sign up
 class CreateAdmin extends StatefulWidget {
 
   @override
@@ -63,7 +65,7 @@ class _CreateAdminPageState extends State<CreateAdmin> {
           padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           child: updateButtonState(),
           onPressed: () async {
-             userId = await Services().createAdmin( emailController.text, passwordController.text,adminController.text);
+             userId = await Services().createAccount( emailController.text, passwordController.text,adminController.text);
             setState(() {
               if(buttonCount == 0){
                 loadButton();

@@ -5,6 +5,7 @@ import 'package:lock/Email/AccountServices.dart';
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
 
+//creates layout and functionality for admin view after sign in
 class Door extends StatelessWidget {
 
   @override
@@ -73,6 +74,23 @@ class Door extends StatelessWidget {
           ),
         ));
 
+    final generateCode= SizedBox(
+        width: MediaQuery.of(context).size.width/2.2,
+        child: MaterialButton(
+          color: Color.fromRGBO(140, 252, 3, 50.0),
+//          minWidth: MediaQuery
+//              .of(context)
+//              .size
+//              .width,
+          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          onPressed: () {
+            Services().generateCode();
+          },
+          child: Text("Generate Code",
+            textAlign: TextAlign.center,
+          ),
+        ));
+
     final addGuest= SizedBox(
         width: MediaQuery.of(context).size.width/2.2,
         child: MaterialButton(
@@ -99,7 +117,7 @@ class Door extends StatelessWidget {
                         child: Text("Create Guest"),
                         color: Color.fromRGBO(0, 191, 255, 50.0),
                         onPressed: (){
-                            Services().createAdmin(emailController.text,passwordController.text);
+                            Services().createAccount(emailController.text,passwordController.text);
                             Navigator.pop(context);
                         },
                       )
@@ -200,7 +218,9 @@ class Door extends StatelessWidget {
             SizedBox(height: 150),
             doorControl,
             SizedBox(height: 50),
-            userButton
+            userButton,
+            SizedBox(height: 50),
+            generateCode
           ],
         ),
       ),

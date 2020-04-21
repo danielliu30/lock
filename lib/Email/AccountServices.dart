@@ -5,15 +5,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:lock/Email/Admin.dart';
 import 'package:lock/Email/User.dart';
+import 'dart:math';
 
+//Object used to handle CRUD operations associated with guest and admin accounts
 class Services{
 
-  static FirebaseUser adminUser = null;
-  static FirebaseAuth _fBAuth = FirebaseAuth.instance;
-  final Firestore _fsAuth = Firestore.instance;
+  static FirebaseUser adminUser = null; //Firebase Account
+  static FirebaseAuth _fBAuth = FirebaseAuth.instance; //connection to Firebase
+  final Firestore _fsAuth = Firestore.instance; //connection to database
 
-
-  Future<String> createAdmin (String email, String pword,[String adminKey]) async{
+  //creates guest or admin account based on optional parameter admminKey
+  Future<String> createAccount (String email, String pword,[String adminKey]) async{
     try{
       if(adminKey!= null && adminKey.toLowerCase() == "admin"){
         AuthResult result =  await _fBAuth.createUserWithEmailAndPassword(
@@ -41,6 +43,7 @@ class Services{
     return null;
   }
 
+  //login account using email and password
   Future<DocumentSnapshot> login(String email, String password)  async{
     AuthResult result;
     try{
@@ -57,12 +60,14 @@ class Services{
     }
     return null;
   }
-  
+
+  //returns a list of guests
   Future<List<DocumentSnapshot>> getGuestList ()async{
     var guestList = await _fsAuth.collection("AdminList").document(adminUser.uid).collection("Guests").getDocuments();
     return guestList.documents;
   }
 
+  //sign out user or admin
   Future<void >signOut() async{
      var before = await _fBAuth.currentUser();
      await _fBAuth.signOut();
@@ -70,6 +75,7 @@ class Services{
      var test1 = await _fBAuth.currentUser();
   }
 
+  //removes guest using email
   Future<void> deleteGuest(String email) async{
       var guest = await _fsAuth.collection("AdminList").document(adminUser.uid).collection("Guests").getDocuments();
       var pword = guest.documents.asMap()[0].data["password"].toString();
@@ -77,5 +83,25 @@ class Services{
       await _fsAuth.collection("AdminList").document(adminUser.uid).collection("Guests").document(temp.user.uid).delete();
       temp.user.delete();
   }
+
+  //creates door code
+  Future<void> generateCode() async{
+    var rng = new Random();
+    var number = rng.nextInt(900000) + 100000;
+    await _fsAuth.collection("DoorCode").document("IrEZ9agFV8FjafIvd7oY").updateData(codeToJson(number));
+  }
+
+  //fetches door code
+  Future<String> getCode() async {
+    var guest = await _fsAuth.collection("DoorCode")
+        .document("IrEZ9agFV8FjafIvd7oY").get();
+    var item = await guest.data.values.toList()[0];
+    return  await item;
+
+  }
+
+  Map<String, dynamic> codeToJson(int code) =>{
+    'adminKey':code
+  };
 }
 
